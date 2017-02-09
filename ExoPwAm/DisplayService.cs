@@ -4,12 +4,17 @@ namespace ExoPwAm
 {
     public class DisplayService
     {
-        public IEnumerable<object> GetItemDisplayList(IEnumerable<Item> collection)
+        public IEnumerable<string> GetItemDisplayList(IEnumerable<Item> collection)
         {
             foreach (var item in collection)
             {
-                yield return $"{item.Type} - {item.Name} - {item.Superficy} cm²";
+                yield return GetItemDisplay(item);
             }
+        }
+
+        public string GetItemDisplay(Item item)
+        {
+            return $"{item.Type} - {item.Name} - {item.Superficy} cm²";
         }
     }
 }

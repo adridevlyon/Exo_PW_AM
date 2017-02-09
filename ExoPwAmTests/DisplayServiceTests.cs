@@ -9,21 +9,21 @@ namespace ExoPwAm.Tests
         [TestMethod()]
         public void GetItemDisplayListTest()
         {
-            var collection = new List<Item>()
+            var collection = new List<Item>
             {
-                new Item()
+                new Item
                 {
                     Type = "Cercle",
                     Name = "Nom1",
                     Superficy = 12
                 },
-                new Item()
+                new Item
                 {
                     Type = "Cercle",
                     Name = "Nom2",
                     Superficy = 15
                 },
-                new Item()
+                new Item
                 {
                     Type = "Triangle",
                     Name = "Nom3",
