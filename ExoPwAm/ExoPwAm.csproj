@@ -47,10 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPricer.cs" />
     <Compile Include="JsonService.cs" />
     <Compile Include="ParseService.cs" />
     <Compile Include="DisplayService.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="OtherPricer.cs" />
+    <Compile Include="Pricer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

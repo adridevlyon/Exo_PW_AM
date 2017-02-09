@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ExoPwAm
 {
@@ -11,9 +12,11 @@ namespace ExoPwAm
         private static DisplayService _displayService;
         private static ParseService _parseService;
         private static JsonService _jsonService;
+        private static IPricer _pricer;
 
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.Default;
             var collection = new List<Item>
             {
                 new Item
@@ -49,8 +52,36 @@ namespace ExoPwAm
             _jsonService.SaveCollectionToFile(collection);
 
             Console.WriteLine(ItemAdded);
-            Console.WriteLine(_displayService.GetItemDisplay(newItem));
+            Console.WriteLine();
+
+            DisplayCollectionWithPricer(collection);
+
+            Console.WriteLine();
+            DisplayCollectionWithOtherPricer(collection);
+
             Console.ReadLine();
+        }
+
+        private static void DisplayCollectionWithOtherPricer(List<Item> collection)
+        {
+            _pricer = new OtherPricer();
+
+            Console.WriteLine("Avec OtherPricer :");
+            foreach (var itemDisplay in _displayService.GetItemDisplayList(collection, _pricer))
+            {
+                Console.WriteLine(itemDisplay);
+            }
+        }
+
+        private static void DisplayCollectionWithPricer(List<Item> collection)
+        {
+            _pricer = new Pricer();
+
+            Console.WriteLine("Avec Pricer :");
+            foreach (var itemDisplay in _displayService.GetItemDisplayList(collection, _pricer))
+            {
+                Console.WriteLine(itemDisplay);
+            }
         }
 
         private static Item AddNewEntry()
