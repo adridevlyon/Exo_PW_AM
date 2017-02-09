@@ -10,6 +10,7 @@ namespace ExoPwAm
         private const string ItemAdded = "Nouvel élément créé avec succès !";
         private static DisplayService _displayService;
         private static ParseService _parseService;
+        private static JsonService _jsonService;
 
         static void Main(string[] args)
         {
@@ -41,6 +42,12 @@ namespace ExoPwAm
             _parseService = new ParseService();
 
             var newItem = AddNewEntry();
+
+            collection.Add(newItem);
+
+            _jsonService = new JsonService();
+            _jsonService.SaveCollectionToFile(collection);
+
             Console.WriteLine(ItemAdded);
             Console.WriteLine(_displayService.GetItemDisplay(newItem));
             Console.ReadLine();
