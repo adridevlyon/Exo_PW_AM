@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ExoPwAm
+namespace ExoPwAm.Tests
 {
-    class Program
+    [TestClass()]
+    public class DisplayServiceTests
     {
-        static void Main(string[] args)
+        [TestMethod()]
+        public void GetItemDisplayListTest()
         {
             var collection = new List<Item>()
             {
@@ -30,10 +32,13 @@ namespace ExoPwAm
             };
 
             var displayService = new DisplayService();
+            var i = 0;
 
             foreach (var itemDisplay in displayService.GetItemDisplayList(collection))
             {
-                Console.WriteLine(itemDisplay);
+                var item = collection[i];
+                Assert.AreEqual($"{item.Type} - {item.Name} - {item.Superficy} cm²", itemDisplay);
+                i++;
             }
         }
     }
